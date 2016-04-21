@@ -3,33 +3,15 @@ Uses crt;
 var 
   Field: array [1..3] of array [1..3] of integer;
   i,j,Position:integer; 
-Procedure WingameX;
-var 
-b,v1,v2:integer;
-Begin
- case b of
- 1:Position[3,1]:='X';
- 2:Position[3,2]:='X';
- 3:Position[3,3]:='X';
- 4:Position[2,1]:='X';
- 5:Position[2,2]:='X';
- 6:Position[2,3]:='X';
- 7:Position[1,1]:='X';
- 8:Position[1,2]:='X';
- 9:Position[1,3]:='X';
-     end;
-   end;
-begin
-  for i:=1 to 3 do
-   for j:=1 to 3 do
-     write(Position[i,j], ' ');
-      writeln();
-end;
- if ((Position[1,1]='X') and (Position[1,2]='X') and (Position[1,3]='X')) or ((Position[2,1]='X') and (Position[2,2]='X')  and (Position[2,3]='X')) then
+
+ Procedure CheckWin;  
+ Begin
+ if ((Field[1,1]=2) and (Field[1,2]=2) and (Field[1,3]=2)) or ((Field[2,1]=2) and (Field[2,2]=2)  and (Field[2,3]=2)) then
   begin
-   v1:=v1+1;
+   {v1:=v1+1;}
    writeln('Выйграл игрок Х');
   end;
+ End;
 Procedure ShowField;  
 var 
   i,j:integer;
@@ -59,7 +41,7 @@ Begin
   ClearField();  
   while true do begin
   ShowField();
-  Wingame();
+  CheckWin();
   write('Сделайте ход: ');
   read(Position);
   Field[(Position-1)div 3+1,(Position-1) mod 3+1]:=2;
